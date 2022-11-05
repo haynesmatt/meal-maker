@@ -136,23 +136,23 @@ const ErrorHandler = {
     }
 };
 
-function sendText() {
-      require("dotenv").config();
+//import dotenv file and twilio then send text 
+require("dotenv").config();
 const twilio = require("twilio");
 
-// Download the helper library from https://www.twilio.com/docs/node/install
-// Find your Account SID and Auth Token in Account Info and set the environment variables.
-// See http://twil.io/secure
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const twillioNum = process.env.TWILIO_NUMBER;
-const sendToNum = process.env.SEND_TO_NUMBER;
-const client = require("twilio")(accountSid, authToken, twillioNum, sendToNum);
+function sendText() {
+    // Download the helper library from https://www.twilio.com/docs/node/install
+    // Find your Account SID and Auth Token in Account Info and set the environment variables.
+    // See http://twil.io/secure
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const twillioNum = process.env.TWILIO_NUMBER;
+    const sendToNum = process.env.SEND_TO_NUMBER;
+    const client = require("twilio")(accountSid, authToken, twillioNum, sendToNum);
 
-client.messages
-  .create({ body: "Hi there", from: twillioNum, to: sendToNum })
-  .then((message) => console.log(message.sid));
-
+    client.messages
+        .create({ body: "Hi there", from: twillioNum, to: sendToNum })
+        .then((message) => console.log(message.sid));
   }
 
 /**
